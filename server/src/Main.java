@@ -1,4 +1,7 @@
 import person.Person;
+import java.util.Scanner;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class Main {
   public static void main(String[] args) {
@@ -107,6 +110,34 @@ public class Main {
       }
     }catch(ArrayIndexOutOfBoundsException e){
       System.out.println("範囲外のアクセスです");
+    }
+    
+    //---ここからJava課題2----
+
+    // 1.メソッドのオーバーロード
+    CalculatePractice calculatePractice = new CalculatePractice();
+    System.out.println(calculatePractice.calculate(10));
+
+    // 2.文字列操作
+    Scanner scanner = new Scanner(System.in);
+    String input = scanner.nextLine();
+    System.out.println(input.toUpperCase());
+
+    // 3.文字列の逆順
+    StringReverse stringReverse = new StringReverse();
+    String reversed = stringReverse.reverse(input);
+    System.out.println(reversed);
+
+    // 4.リフレクションでPersonクラスのフィールド名・メソッド名を取得
+    Class<Person> personClass = Person.class;//PersonクラスのClassオブジェクトを取得
+
+    //フィールド一覧を取得
+    for (Field field : personClass.getDeclaredFields()) {
+      System.out.println(field.getName());
+    }
+    //メソッド一覧を取得
+    for (Method method : personClass.getDeclaredMethods()) {
+      System.out.println(method.getName());
     }
   }
 
